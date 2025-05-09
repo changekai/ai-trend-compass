@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import TrendCard from '@/components/dashboard/TrendCard';
 import DataSourcesPanel from '@/components/dashboard/DataSourcesPanel';
 import SteepAnalysisCard from '@/components/dashboard/SteepAnalysisCard';
@@ -200,25 +201,34 @@ const Index = () => {
               <p className="text-sm text-gray-600 mb-3 text-center">
                 使用自然語言向AI提問，探索趨勢資訊
               </p>
-              <div className="relative">
-                <input
-                  type="text"
-                  placeholder="例如：近期生成式AI在產業有哪些應用？"
-                  className="w-full px-4 py-2 pr-10 border rounded-lg"
-                />
-                <Search className="absolute right-3 top-2.5 h-5 w-5 text-gray-400" />
-              </div>
+              <Link to="/search" className="block">
+                <div className="relative">
+                  <input
+                    type="text"
+                    placeholder="例如：近期生成式AI在產業有哪些應用？"
+                    className="w-full px-4 py-2 pr-10 border rounded-lg cursor-pointer"
+                    readOnly
+                  />
+                  <Search className="absolute right-3 top-2.5 h-5 w-5 text-gray-400" />
+                </div>
+              </Link>
               <div className="mt-4 space-y-2">
                 <p className="text-xs text-gray-500">推薦問題：</p>
-                <Button variant="ghost" size="sm" className="w-full justify-start text-sm">
-                  台灣半導體產業面臨哪些挑戰？
-                </Button>
-                <Button variant="ghost" size="sm" className="w-full justify-start text-sm">
-                  全球碳中和趨勢對台灣有何影響？
-                </Button>
-                <Button variant="ghost" size="sm" className="w-full justify-start text-sm">
-                  樂齡科技未來三年發展方向？
-                </Button>
+                <Link to="/search">
+                  <Button variant="ghost" size="sm" className="w-full justify-start text-sm">
+                    台灣半導體產業面臨哪些挑戰？
+                  </Button>
+                </Link>
+                <Link to="/search">
+                  <Button variant="ghost" size="sm" className="w-full justify-start text-sm">
+                    全球碳中和趨勢對台灣有何影響？
+                  </Button>
+                </Link>
+                <Link to="/search">
+                  <Button variant="ghost" size="sm" className="w-full justify-start text-sm">
+                    樂齡科技未來三年發展方向？
+                  </Button>
+                </Link>
               </div>
             </div>
           </div>

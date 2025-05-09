@@ -7,6 +7,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import MainLayout from "./components/layout/MainLayout";
 import Index from "./pages/Index";
 import SteepAnalysis from "./pages/SteepAnalysis";
+import ConversationalSearch from "./pages/ConversationalSearch";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -31,6 +32,14 @@ const App = () => (
             element={
               <MainLayout>
                 <SteepAnalysis />
+              </MainLayout>
+            } 
+          />
+          <Route 
+            path="/search" 
+            element={
+              <MainLayout>
+                <ConversationalSearch />
               </MainLayout>
             } 
           />
