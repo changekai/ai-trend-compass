@@ -1,4 +1,3 @@
-
 import React from 'react';
 import TrendCard from '@/components/dashboard/TrendCard';
 import DataSourcesPanel from '@/components/dashboard/DataSourcesPanel';
@@ -17,7 +16,7 @@ const trendData = [
     source: 'MIT Technology Review',
     date: '2025-05-07',
     tags: ['AI', '多模態'],
-    color: 'blue'
+    color: 'blue' as const
   },
   {
     category: '經濟趨勢',
@@ -26,7 +25,7 @@ const trendData = [
     source: 'The Economist',
     date: '2025-05-05',
     tags: ['法規', '數位經濟'],
-    color: 'teal'
+    color: 'teal' as const
   },
   {
     category: '社會趨勢',
@@ -35,7 +34,7 @@ const trendData = [
     source: 'Healthcare Innovation',
     date: '2025-05-03',
     tags: ['樂齡', '智慧醫療'],
-    color: 'orange'
+    color: 'orange' as const
   }
 ];
 
@@ -172,7 +171,16 @@ const Index = () => {
       <h2 className="text-xl font-bold mt-8 mb-4">今日趨勢觀測</h2>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
         {trendData.map((trend, index) => (
-          <TrendCard key={index} {...trend} />
+          <TrendCard 
+            key={index}
+            category={trend.category}
+            title={trend.title}
+            description={trend.description}
+            source={trend.source}
+            date={trend.date}
+            tags={trend.tags}
+            color={trend.color}
+          />
         ))}
       </div>
       
