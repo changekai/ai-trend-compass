@@ -1,24 +1,28 @@
-import { useLocation } from "react-router-dom";
-import { useEffect } from "react";
+
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { Button } from '@/components/ui/button';
+import { Search } from 'lucide-react';
 
 const NotFound = () => {
-  const location = useLocation();
-
-  useEffect(() => {
-    console.error(
-      "404 Error: User attempted to access non-existent route:",
-      location.pathname
-    );
-  }, [location.pathname]);
-
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">404</h1>
-        <p className="text-xl text-gray-600 mb-4">Oops! Page not found</p>
-        <a href="/" className="text-blue-500 hover:text-blue-700 underline">
-          Return to Home
-        </a>
+    <div className="min-h-screen flex items-center justify-center bg-gray-50">
+      <div className="text-center px-4">
+        <h1 className="text-6xl font-bold text-trend-blue mb-4">404</h1>
+        <h2 className="text-2xl font-semibold text-gray-800 mb-6">頁面未找到</h2>
+        <p className="text-gray-600 max-w-md mx-auto mb-8">
+          您請求的頁面不存在或已被移除。請嘗試搜尋或返回首頁。
+        </p>
+        
+        <div className="flex flex-col md:flex-row items-center justify-center gap-4">
+          <Button asChild>
+            <Link to="/">返回首頁</Link>
+          </Button>
+          <Button variant="outline" className="gap-2">
+            <Search className="h-4 w-4" />
+            搜尋趨勢
+          </Button>
+        </div>
       </div>
     </div>
   );
