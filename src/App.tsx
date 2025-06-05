@@ -8,6 +8,7 @@ import MainLayout from "./components/layout/MainLayout";
 import Index from "./pages/Index";
 import SteepAnalysis from "./pages/SteepAnalysis";
 import ConversationalSearch from "./pages/ConversationalSearch";
+import PlatformFeatures from "./pages/PlatformFeatures";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -40,6 +41,14 @@ const App = () => (
             element={
               <MainLayout>
                 <ConversationalSearch />
+              </MainLayout>
+            } 
+          />
+          <Route 
+            path="/features" 
+            element={
+              <MainLayout>
+                <PlatformFeatures />
               </MainLayout>
             } 
           />

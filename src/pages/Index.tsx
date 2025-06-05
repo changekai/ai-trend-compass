@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Link } from 'react-router-dom';
 import TrendCard from '@/components/dashboard/TrendCard';
@@ -6,7 +7,7 @@ import SteepAnalysisCard from '@/components/dashboard/SteepAnalysisCard';
 import RecentReportsPanel from '@/components/dashboard/RecentReportsPanel';
 import TrendInsightPanel from '@/components/dashboard/TrendInsightPanel';
 import { Button } from '@/components/ui/button';
-import { Bell, Calendar, Search } from 'lucide-react';
+import { Bell, Calendar, Search, Grid3X3 } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 
 const trendData = [
@@ -51,6 +52,12 @@ const Index = () => {
         </div>
         
         <div className="flex space-x-3">
+          <Link to="/features">
+            <Button variant="outline" className="gap-2">
+              <Grid3X3 className="h-4 w-4" />
+              <span>平台功能</span>
+            </Button>
+          </Link>
           <Button variant="outline" className="gap-2">
             <Calendar className="h-4 w-4" />
             <span>2025年5月9日</span>

@@ -4,17 +4,19 @@ import { Link } from 'react-router-dom';
 import { 
   BarChart, FileText, Home, 
   Layers, MessageSquare, Search, 
-  Settings, ChevronRight, ChevronLeft 
+  Settings, ChevronRight, ChevronLeft,
+  Grid3X3
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 
 const navItems = [
   { name: '首頁', icon: Home, path: '/' },
+  { name: '平台功能', icon: Grid3X3, path: '/features' },
   { name: 'STEEP趨勢', icon: BarChart, path: '/steep' },
   { name: '主題趨勢', icon: Layers, path: '/topics' },
   { name: '產業報告', icon: FileText, path: '/industry' },
-  { name: '對話式搜尋', icon: MessageSquare, path: '/chat' },
+  { name: '對話式搜尋', icon: MessageSquare, path: '/search' },
   { name: '資料來源', icon: Search, path: '/sources' },
   { name: '設定', icon: Settings, path: '/settings' },
 ];
