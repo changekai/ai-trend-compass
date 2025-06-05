@@ -27,7 +27,6 @@ import {
 interface FeatureCardProps {
   title: string;
   description: string;
-  category: string;
   icon: React.ReactNode;
   status: 'active' | 'development' | 'planned';
   features: string[];
@@ -35,7 +34,7 @@ interface FeatureCardProps {
   onExplore: () => void;
 }
 
-const FeatureCard = ({ title, description, category, icon, status, features, output, onExplore }: FeatureCardProps) => {
+const FeatureCard = ({ title, description, icon, status, features, output, onExplore }: FeatureCardProps) => {
   const [isExpanded, setIsExpanded] = useState(false);
   
   const statusColors = {
@@ -115,172 +114,176 @@ const FeatureCard = ({ title, description, category, icon, status, features, out
 };
 
 const PlatformFeatures = () => {
-  const [selectedCategory, setSelectedCategory] = useState('all');
-
   const categories = [
-    { id: 'all', name: '全部功能', count: 10 },
-    { id: 'automation', name: '自動化報告', count: 2 },
-    { id: 'analysis', name: '深度分析', count: 4 },
-    { id: 'specialized', name: '精煉應用', count: 4 }
-  ];
-
-  const features = [
     {
-      id: 1,
-      title: '政策盤點週報',
-      description: '每週自動生成政策相關資訊摘要，協助技術司同仁掌握最新政策動態',
-      category: 'automation',
-      icon: <FileText className="h-5 w-5 text-trend-blue" />,
-      status: 'development' as const,
-      output: '每週一份，持續約三十週，提供技術司內部同仁參考，協助資料蒐集與研究',
+      id: 'automation',
+      title: '一、定期自動化報告與資訊推播',
+      description: '這類產出強調時效性、規律性，並需高度自動化。',
+      color: 'from-trend-blue to-blue-700',
+      icon: <Clock className="h-8 w-8" />,
       features: [
-        '自動化資料蒐集模組',
-        'AI內容處理與分析模組',
-        '報告自動生成引擎',
-        '排程與自動寄送模組',
-        '任務管理與追蹤'
+        {
+          id: 1,
+          title: '政策盤點週報',
+          description: '每週自動生成政策相關資訊摘要，協助技術司同仁掌握最新政策動態',
+          icon: <FileText className="h-5 w-5 text-trend-blue" />,
+          status: 'development' as const,
+          output: '每週一份，持續約三十週，提供技術司內部同仁參考，協助資料蒐集與研究',
+          features: [
+            '自動化資料蒐集模組',
+            'AI內容處理與分析模組',
+            '報告自動生成引擎',
+            '排程與自動寄送模組',
+            '任務管理與追蹤'
+          ]
+        },
+        {
+          id: 2,
+          title: '每日電子報',
+          description: '每日自動蒐集並推播AI相關最新資訊與趨勢',
+          icon: <Mail className="h-5 w-5 text-trend-blue" />,
+          status: 'development' as const,
+          output: '每日自動生成並發送，提供即時AI相關資訊',
+          features: [
+            '廣泛資訊自動蒐集模組',
+            'AI資訊處理與篩選模組',
+            '客製化推播設定',
+            '電子報自動生成引擎',
+            '排程與自動寄送模組'
+          ]
+        }
       ]
     },
     {
-      id: 2,
-      title: '每日電子報',
-      description: '每日自動蒐集並推播AI相關最新資訊與趨勢',
-      category: 'automation',
-      icon: <Mail className="h-5 w-5 text-trend-blue" />,
-      status: 'development' as const,
-      output: '每日自動生成並發送，提供即時AI相關資訊',
+      id: 'analysis',
+      title: '二、深度分析與動態回應報告',
+      description: '這類產出需要更強的AI分析能力，並能依據使用者需求或特定事件觸發。',
+      color: 'from-trend-teal to-teal-700',
+      icon: <Search className="h-8 w-8" />,
       features: [
-        '廣泛資訊自動蒐集模組',
-        'AI資訊處理與篩選模組',
-        '客製化推播設定',
-        '電子報自動生成引擎',
-        '排程與自動寄送模組'
+        {
+          id: 3,
+          title: '整體環境趨勢報告',
+          description: '基於STEEP框架進行多維度環境分析，識別趨勢與機會',
+          icon: <Globe className="h-5 w-5 text-trend-blue" />,
+          status: 'active' as const,
+          output: '基於STEEP框架（社會、科技、經濟、環境、政治），由AI處理層根據UI設定自動生成',
+          features: [
+            'STEEP多維度資料蒐集模組',
+            'AI STEEP分析引擎',
+            '使用者互動介面(UI)',
+            'STEEP報告生成引擎',
+            '視覺化呈現模組'
+          ]
+        },
+        {
+          id: 4,
+          title: '主題型/產業趨勢報告',
+          description: '針對特定領域或產業進行深度趨勢分析',
+          icon: <TrendingUp className="h-5 w-5 text-trend-blue" />,
+          status: 'development' as const,
+          output: '針對特定領域或主題（如生成式AI、樂齡科技、能源AI應用等）自動生成分析報告',
+          features: [
+            '主題/產業深度資料蒐集模組',
+            '進階AI分析引擎',
+            '使用者互動介面(UI)',
+            '主題/產業報告生成引擎'
+          ]
+        },
+        {
+          id: 5,
+          title: '談參資料',
+          description: '支援決策者快速準備會議討論資料，類似Repository功能',
+          icon: <MessageSquare className="h-5 w-5 text-trend-blue" />,
+          status: 'active' as const,
+          output: '支援決策者快速準備會議或討論，類似Repository功能，透過AI快速產出',
+          features: [
+            '整合知識庫存取模組',
+            '自然語言查詢(NLQ)介面',
+            'AI快速應答與摘要模組',
+            '輸出格式化模組'
+          ]
+        },
+        {
+          id: 6,
+          title: '臨時索資處理',
+          description: '快速回應緊急資料需求，提供即時資訊檢索服務',
+          icon: <Zap className="h-5 w-5 text-trend-blue" />,
+          status: 'active' as const,
+          output: '快速回應臨時性的資料需求，例如「部長三分鐘內需要某個資料」',
+          features: [
+            '高效能資訊檢索引擎',
+            '優化的NLQ與即時AI處理',
+            '預處理與快取機制',
+            '簡潔結果呈現與快速傳遞介面'
+          ]
+        }
       ]
     },
     {
-      id: 3,
-      title: '整體環境趨勢報告',
-      description: '基於STEEP框架進行多維度環境分析，識別趨勢與機會',
-      category: 'analysis',
-      icon: <Globe className="h-5 w-5 text-trend-blue" />,
-      status: 'active' as const,
-      output: '基於STEEP框架（社會、科技、經濟、環境、政治），由AI處理層根據UI設定自動生成',
+      id: 'specialized',
+      title: '三、精煉型與特定應用型產出',
+      description: '這類產出強調資訊的精煉度、特定格式要求，或針對特定應用場景。',
+      color: 'from-trend-orange to-orange-700',
+      icon: <Target className="h-8 w-8" />,
       features: [
-        'STEEP多維度資料蒐集模組',
-        'AI STEEP分析引擎',
-        '使用者互動介面(UI)',
-        'STEEP報告生成引擎',
-        '視覺化呈現模組'
-      ]
-    },
-    {
-      id: 4,
-      title: '主題型/產業趨勢報告',
-      description: '針對特定領域或產業進行深度趨勢分析',
-      category: 'analysis',
-      icon: <TrendingUp className="h-5 w-5 text-trend-blue" />,
-      status: 'development' as const,
-      output: '針對特定領域或主題（如生成式AI、樂齡科技、能源AI應用等）自動生成分析報告',
-      features: [
-        '主題/產業深度資料蒐集模組',
-        '進階AI分析引擎',
-        '使用者互動介面(UI)',
-        '主題/產業報告生成引擎'
-      ]
-    },
-    {
-      id: 5,
-      title: '談參資料',
-      description: '支援決策者快速準備會議討論資料，類似Repository功能',
-      category: 'analysis',
-      icon: <MessageSquare className="h-5 w-5 text-trend-blue" />,
-      status: 'active' as const,
-      output: '支援決策者快速準備會議或討論，類似Repository功能，透過AI快速產出',
-      features: [
-        '整合知識庫存取模組',
-        '自然語言查詢(NLQ)介面',
-        'AI快速應答與摘要模組',
-        '輸出格式化模組'
-      ]
-    },
-    {
-      id: 6,
-      title: '臨時索資處理',
-      description: '快速回應緊急資料需求，提供即時資訊檢索服務',
-      category: 'analysis',
-      icon: <Zap className="h-5 w-5 text-trend-blue" />,
-      status: 'active' as const,
-      output: '快速回應臨時性的資料需求，例如「部長三分鐘內需要某個資料」',
-      features: [
-        '高效能資訊檢索引擎',
-        '優化的NLQ與即時AI處理',
-        '預處理與快取機制',
-        '簡潔結果呈現與快速傳遞介面'
-      ]
-    },
-    {
-      id: 7,
-      title: '一頁式報告/簡報/個案',
-      description: '生成高度濃縮的一頁式分析報告，符合高層閱讀習慣',
-      category: 'specialized',
-      icon: <BarChart3 className="h-5 w-5 text-trend-blue" />,
-      status: 'development' as const,
-      output: '內容高度濃縮，符合高層閱讀習慣（一張圖、一頁案子），是Prompt工程最佳化的重要目標',
-      features: [
-        '進階AI摘要與提煉引擎',
-        '優化的Prompt工程介面/核心',
-        '視覺化元素生成/整合',
-        '一頁式模板引擎'
-      ]
-    },
-    {
-      id: 8,
-      title: '用於人才培訓所需的資料',
-      description: '結合AI排序，產出可輔助人才培訓的精選學習資料',
-      category: 'specialized',
-      icon: <GraduationCap className="h-5 w-5 text-trend-blue" />,
-      status: 'planned' as const,
-      output: '結合AI Ranking，產出可輔助人才培訓的資料',
-      features: [
-        'AI內容策展與排序模組',
-        '學習材料初步生成',
-        '學習路徑建議'
-      ]
-    },
-    {
-      id: 9,
-      title: 'AI與GAI的創新應用個案',
-      description: '蒐集並分析全球AI創新應用案例，具商業化潛力',
-      category: 'specialized',
-      icon: <Lightbulb className="h-5 w-5 text-trend-blue" />,
-      status: 'planned' as const,
-      output: '未來可能產出，甚至可商業化',
-      features: [
-        '全球AI/GAI應用案例蒐集與資料庫',
-        'AI輔助案例分析與撰寫模組',
-        '案例資料庫管理與檢索'
-      ]
-    },
-    {
-      id: 10,
-      title: 'AI新創識別與分析結果',
-      description: '識別並分析最具潛力的AI新創公司，提供投資參考',
-      category: 'specialized',
-      icon: <Building2 className="h-5 w-5 text-trend-blue" />,
-      status: 'planned' as const,
-      output: '例如分析識別出「一百個最值得我們去攻的AI新創」',
-      features: [
-        '全球AI新創資料蒐集模組',
-        'AI新創評估與排序模型',
-        '多維度篩選與比較功能',
-        '新創分析報告生成'
+        {
+          id: 7,
+          title: '一頁式報告/簡報/個案',
+          description: '生成高度濃縮的一頁式分析報告，符合高層閱讀習慣',
+          icon: <BarChart3 className="h-5 w-5 text-trend-blue" />,
+          status: 'development' as const,
+          output: '內容高度濃縮，符合高層閱讀習慣（一張圖、一頁案子），是Prompt工程最佳化的重要目標',
+          features: [
+            '進階AI摘要與提煉引擎',
+            '優化的Prompt工程介面/核心',
+            '視覺化元素生成/整合',
+            '一頁式模板引擎'
+          ]
+        },
+        {
+          id: 8,
+          title: '用於人才培訓所需的資料',
+          description: '結合AI排序，產出可輔助人才培訓的精選學習資料',
+          icon: <GraduationCap className="h-5 w-5 text-trend-blue" />,
+          status: 'planned' as const,
+          output: '結合AI Ranking，產出可輔助人才培訓的資料',
+          features: [
+            'AI內容策展與排序模組',
+            '學習材料初步生成',
+            '學習路徑建議'
+          ]
+        },
+        {
+          id: 9,
+          title: 'AI與GAI的創新應用個案',
+          description: '蒐集並分析全球AI創新應用案例，具商業化潛力',
+          icon: <Lightbulb className="h-5 w-5 text-trend-blue" />,
+          status: 'planned' as const,
+          output: '未來可能產出，甚至可商業化',
+          features: [
+            '全球AI/GAI應用案例蒐集與資料庫',
+            'AI輔助案例分析與撰寫模組',
+            '案例資料庫管理與檢索'
+          ]
+        },
+        {
+          id: 10,
+          title: 'AI新創識別與分析結果',
+          description: '識別並分析最具潛力的AI新創公司，提供投資參考',
+          icon: <Building2 className="h-5 w-5 text-trend-blue" />,
+          status: 'planned' as const,
+          output: '例如分析識別出「一百個最值得我們去攻的AI新創」',
+          features: [
+            '全球AI新創資料蒐集模組',
+            'AI新創評估與排序模型',
+            '多維度篩選與比較功能',
+            '新創分析報告生成'
+          ]
+        }
       ]
     }
   ];
-
-  const filteredFeatures = selectedCategory === 'all' 
-    ? features 
-    : features.filter(feature => feature.category === selectedCategory);
 
   const handleExplore = (featureId: number) => {
     // 根據功能ID導向對應頁面
@@ -307,99 +310,83 @@ const PlatformFeatures = () => {
         </p>
       </div>
 
-      {/* 功能統計卡片 */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
-        <Card className="bg-gradient-to-br from-trend-blue/90 to-trend-blue text-white">
-          <CardContent className="p-6">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-blue-100">自動化報告</p>
-                <p className="text-2xl font-bold">2 項功能</p>
-              </div>
-              <Clock className="h-8 w-8 text-blue-200" />
-            </div>
-          </CardContent>
-        </Card>
-        
-        <Card className="bg-gradient-to-br from-trend-teal/90 to-trend-teal text-white">
-          <CardContent className="p-6">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-teal-100">深度分析</p>
-                <p className="text-2xl font-bold">4 項功能</p>
-              </div>
-              <Search className="h-8 w-8 text-teal-200" />
-            </div>
-          </CardContent>
-        </Card>
-        
-        <Card className="bg-gradient-to-br from-trend-orange/90 to-trend-orange text-white">
-          <CardContent className="p-6">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-orange-100">精煉應用</p>
-                <p className="text-2xl font-bold">4 項功能</p>
-              </div>
-              <Target className="h-8 w-8 text-orange-200" />
-            </div>
-          </CardContent>
-        </Card>
-      </div>
-
-      {/* 分類篩選器 */}
-      <div className="flex flex-wrap gap-2 mb-6">
+      {/* 功能統計總覽 */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-12">
         {categories.map((category) => (
-          <Button
-            key={category.id}
-            variant={selectedCategory === category.id ? "default" : "outline"}
-            onClick={() => setSelectedCategory(category.id)}
-            className={selectedCategory === category.id ? "bg-trend-blue hover:bg-blue-700" : ""}
-          >
-            {category.name}
-            <Badge variant="secondary" className="ml-2">
-              {category.count}
-            </Badge>
-          </Button>
+          <Card key={category.id} className={`bg-gradient-to-br ${category.color} text-white`}>
+            <CardContent className="p-6">
+              <div className="flex items-center justify-between">
+                <div>
+                  <p className="text-white/80 text-sm">{category.title.replace(/[一二三]、/, '')}</p>
+                  <p className="text-2xl font-bold">{category.features.length} 項功能</p>
+                </div>
+                <div className="text-white/60">
+                  {category.icon}
+                </div>
+              </div>
+            </CardContent>
+          </Card>
         ))}
       </div>
 
-      {/* 功能卡片網格 */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {filteredFeatures.map((feature) => (
-          <FeatureCard
-            key={feature.id}
-            title={feature.title}
-            description={feature.description}
-            category={feature.category}
-            icon={feature.icon}
-            status={feature.status}
-            features={feature.features}
-            output={feature.output}
-            onExplore={() => handleExplore(feature.id)}
-          />
+      {/* 按類別分組展示功能 */}
+      <div className="space-y-12">
+        {categories.map((category) => (
+          <div key={category.id} className="space-y-6">
+            {/* 類別標題 */}
+            <div className="border-l-4 border-l-trend-blue pl-4">
+              <h2 className="text-2xl font-bold mb-2">{category.title}</h2>
+              <p className="text-gray-600">{category.description}</p>
+            </div>
+
+            {/* 該類別的功能卡片 */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
+              {category.features.map((feature) => (
+                <FeatureCard
+                  key={feature.id}
+                  title={feature.title}
+                  description={feature.description}
+                  icon={feature.icon}
+                  status={feature.status}
+                  features={feature.features}
+                  output={feature.output}
+                  onExplore={() => handleExplore(feature.id)}
+                />
+              ))}
+            </div>
+          </div>
         ))}
       </div>
 
-      {/* 底部說明 */}
-      <div className="mt-12 p-6 bg-gray-50 rounded-lg">
-        <h3 className="text-lg font-semibold mb-3">功能分類說明</h3>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div>
-            <h4 className="font-medium text-trend-blue mb-2">一、定期自動化報告與資訊推播</h4>
+      {/* 底部總結 */}
+      <div className="mt-16 p-8 bg-gradient-to-r from-gray-50 to-blue-50 rounded-lg border border-gray-200">
+        <h3 className="text-xl font-bold mb-4 text-center">平台核心能力架構</h3>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="text-center">
+            <div className="w-16 h-16 bg-trend-blue/10 rounded-full flex items-center justify-center mx-auto mb-4">
+              <Clock className="h-8 w-8 text-trend-blue" />
+            </div>
+            <h4 className="font-semibold text-trend-blue mb-2">自動化報告</h4>
             <p className="text-sm text-gray-600">
-              這類產出強調時效性、規律性，並需高度自動化。包含政策盤點週報和每日電子報等功能。
+              定期生成、規律推播，建立持續性的資訊服務體系
             </p>
           </div>
-          <div>
-            <h4 className="font-medium text-trend-teal mb-2">二、深度分析與動態回應報告</h4>
+          <div className="text-center">
+            <div className="w-16 h-16 bg-trend-teal/10 rounded-full flex items-center justify-center mx-auto mb-4">
+              <Search className="h-8 w-8 text-trend-teal" />
+            </div>
+            <h4 className="font-semibold text-trend-teal mb-2">深度分析</h4>
             <p className="text-sm text-gray-600">
-              這類產出需要更強的AI分析能力，並能依據使用者需求或特定事件觸發。包含STEEP分析、談參資料等。
+              動態回應需求，提供深入洞察與戰略參考
             </p>
           </div>
-          <div>
-            <h4 className="font-medium text-trend-orange mb-2">三、精煉型與特定應用型產出</h4>
+          <div className="text-center">
+            <div className="w-16 h-16 bg-trend-orange/10 rounded-full flex items-center justify-center mx-auto mb-4">
+              <Target className="h-8 w-8 text-trend-orange" />
+            </div>
+            <h4 className="font-semibold text-trend-orange mb-2">精煉應用</h4>
             <p className="text-sm text-gray-600">
-              這類產出強調資訊的精煉度、特定格式要求，或針對特定應用場景。包含一頁式報告、培訓資料等。
+              高度濃縮資訊，滿足特定場景的專業需求
             </p>
           </div>
         </div>
